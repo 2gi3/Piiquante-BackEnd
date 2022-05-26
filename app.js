@@ -10,9 +10,9 @@ const path = require('path');
 
 const mdb ="mongodb+srv://ocproject6:pr6oc@project6.lvb15.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
 const mongoDB =
-  "mongodb+srv://notidev:notidev@cluster0.4klrn.mongodb.net/saucesdb?retryWrites=true&w=majority";
+  "mongodb+srv://nooutidev:nooutidev@cluster0.4klrn.mongodb.net/saucesdb?retryWrites=true&w=majority";
 
-mongoose.connect(mdb) .then(() => {
+mongoose.connect(mongoDB).then(() => {
     console.log('Successfully connected to MongoDB Atlas!');
   })
   .catch((error) => { 
