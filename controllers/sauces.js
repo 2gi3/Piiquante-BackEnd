@@ -1,15 +1,20 @@
+require('dotenv').config();
+const cloudinary = require('cloudinary').v2;
 const Sauce = require('../models/sauce');
 const fs = require('fs');
 
 exports.createSauce= (req, res, next) => {
+  let secure_url = '';
   req.body.sauce = JSON.parse(req.body.sauce);
-  const url = req.protocol + '://' + req.get('host');
+  const fileName = req.file.filename
+  cloudinary.uploader.upload(`./images/${fileName}`)
+	.then(result => {
     const sauce = new Sauce({
       userId: req.body.sauce.userId,
       name: req.body.sauce.name,
       manufacturer: req.body.sauce.manufacturer,
       description: req.body.sauce.description,
-      imageUrl: url + '/images/' + req.file.filename,
+      imageUrl: result.secure_url,
       mainPepper: req.body.sauce. mainPepper,
       heat: req.body.sauce.heat,
       likes:0,
@@ -17,7 +22,10 @@ exports.createSauce= (req, res, next) => {
       usersLiked:req.body.sauce.usersLiked,
       usersDisliked:req.body.sauce.usersDisliked,
     });
-    sauce.save().then(
+    sauce.save()})
+  // need to change imageUrl value(line20) to secure_url
+  // const url = req.protocol + '://' + req.get('host');
+   .then(
       () => {
         res.status(201).json({
           message: 'New sauce saved successfully!'

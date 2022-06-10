@@ -1,3 +1,5 @@
+// mongoDB connection link: mongodb+srv://ocproject6:<password>@project6.lvb15.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
+// mongoDB project6 password: pr6oc
 require("dotenv").config({path: __dirname + '/.env'});
 // import * as ENV from '.env'
 const express = require('express');
